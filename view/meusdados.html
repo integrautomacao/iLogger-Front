@@ -1,0 +1,43 @@
+<div class="page page-form page-meusdados">
+
+
+  <div class="box-central">
+    <span class="titulo-form">Meus Dados</span>
+
+    <div class="div-person-change" ng-show="!imageSrc" ng-click="triggerClick2File()">
+      <i class="fas fa-user"></i>
+      <span>Adicionar Foto</span>
+    </div>
+    <div class="div-person-change" ng-show="imageSrc" ng-click="triggerClick2File()">
+      <img ng-src="{{imageSrc}}" />
+    </div>
+    <input type="file" ng-file-select="onFileSelect($files)" ng-model="imageSrc" id="inputFilePhoto">
+
+    <form>
+      <div class="form-group">
+        <label for="nome">Nome</label>
+        <input type="text" class="form-control" id="nome" ng-model="usuario.nome" placeholder="Nome:" >
+      </div>
+      <div class="form-group">
+        <label for="login">Login</label>
+        <input type="text" class="form-control" id="login" ng-model="usuario.login" placeholder="Login:" >
+      </div>
+      <div class="form-group">
+        <label for="senha">Senha</label>
+        <input type="password" class="form-control" id="senha" ng-model="usuario.novasenha" placeholder="Senha:" maxlength="14" >
+      </div>
+      <div class="form-group">
+        <label for="resenha">Repita a Senha</label>
+        <input type="password" class="form-control" id="resenha" ng-model="usuario.resenha" placeholder="Repita a Senha:" maxlength="14">
+      </div>
+    </form>
+
+    <div class="form-group">
+      <button type="button" class="btn bt-salvar" ng-click="editarDados()">Salvar</button>
+    </div>
+
+
+  </div>
+
+
+</div>

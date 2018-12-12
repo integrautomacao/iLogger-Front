@@ -1,0 +1,94 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+
+    <title>PIMS</title>
+
+    <link href="lib/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="lib/fonts/font-awesome/font-awesome.css">
+    <link href="css/style.css" rel="stylesheet">
+    <script src="lib/angular/1.2/angular.min.js"></script>
+    <script src="lib/angular/1.2/angular-route.min.js"></script>
+    <script src="lib/apexcharts.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/controllers.js"></script>
+    <script src="js/services.js"></script>
+</head>
+
+<body ng-app="app">
+  <span class="myMessage" id="myMessage">
+    <span id="innerMsg"></span>
+    <span class="x" id="x">x</span>
+  </span>
+  <div class="myLoading" id="myLoading">
+    <div class="box-loading">
+      <b class="title">Aguarde</b>
+      <span class="msg-loading" id="msg-loading"></span>
+      <img src="img/loading.gif" alt="loading">
+    </div>
+  </div>
+
+    <!-- ### TOPO EXTERNO ### -->
+    <div ng-if="!logado" class="topo topo-externo">
+        <img src="img/logo.png" class="logo-empresa" title="LOGO" alt="LOGO" >
+    </div>
+
+
+    <!-- ########################################## -->
+
+
+    <!-- ### TOPO INTERNO ### -->
+    <div ng-if="logado" class="topo topo-logado" ng-click="closeMenu($event)">
+      <a ng-click="openMenu($event)"><span class="btn btn-default fas fa-bars hamburguer"></span></a>
+
+      <a ng-if="logado && showBtVoltar " href="#home" class="bt-voltar-topo"> &nbsp; Voltar &nbsp;</a>
+      <img src="img/logo.png" class="logo-empresa pointer" title="LOGO" alt="LOGO" ng-click="goTo('home')">
+    </div>
+
+    <!-- ### MENU LATERAL INTERNO ### -->
+    <div ng-show="menuOpened" id="menu-lateral">
+
+      <div class="session-foto">
+        <a ng-click="closeMenu($event)"><span class="btn btn-default fas fa-bars hamburguer"></span></a>
+
+        <div class="div-foto pointer" ng-click="goTo('meusdados')">
+          <i class="fas fa-user" ng-show="!imageSrc"></i>
+          <img ng-src="{{imageSrc}}" ng-show="imageSrc" />
+        </div>
+
+        <span id="bem-vindo">
+          Olá,
+          {{nomeUsuario}}
+        </span>
+
+        <div ng-show="logado" class="bt-logout" ng-click="logout()">
+          <i class="fas fa-power-off"></i>
+          Sair
+        </div>
+
+      </div>
+
+      <!-- ### Opções do menu ### -->
+      <ul class="nav navbar">
+        <li><a href="#home"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+        <li><a href="#relatorio/horas-trabalhadas"><span class="glyphicon glyphicon-time"></span> Horas Trabalhadas</a></li>
+        <li><a href="#relatorio/horas-paradas"><span class="glyphicon glyphicon-pause"></span> Horas Paradas</a></li>
+        <li><a href="#relatorio/falhas"><span class="glyphicon glyphicon-alert"></span> Quantidade de Falhas</a></li>
+        <li><a href="#relatorio/producao"><span class="glyphicon glyphicon-cog"></span> Produção</a></li>
+        <li><a href="#relatorio/dados-processo"><span class="glyphicon glyphicon-list-alt"></span> Dados de Processo</a></li>
+      </ul>
+
+
+    </div>
+
+    <!-- ### VIEW PRINCIPAL ### -->
+    <div class="view-principal" ng-view ng-click="closeMenu($event)"></div>
+
+
+</body>
+
+</html>
